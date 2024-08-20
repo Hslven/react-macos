@@ -1,11 +1,15 @@
 // import React from 'react';
-// import { wallpapers, user } from "~/configs";
+import { wallpapers } from '@/configs';
 // import type { MacActions } from "~/types";
 
 export default function Login(props: unknown) {
   // const [password, setPassword] = useState("");
   // const [sign, setSign] = useState("Click to enter");
-  // const dark = useStore((state) => state.dark);
+  const dark = useStore((state) => {
+    console.log(state);
+    // return state.theme;
+    return state.system.theme;
+  });
 
   // const keyPress = (e: React.KeyboardEvent) => {
   //   const keyCode = e.key;
@@ -29,11 +33,9 @@ export default function Login(props: unknown) {
   return (
     <div
       className="login size-full text-center"
-      // style={{
-      //   background: `url(${
-      //     dark ? wallpapers.night : wallpapers.day
-      //   }) center/cover no-repeat`
-      // }}
+      style={{
+        background: `url(${wallpapers[dark]}) center/cover no-repeat`,
+      }}
       // onClick={() => loginHandle()}
     >
       <div className="inline-block w-auto relative top-1/2 -mt-40">

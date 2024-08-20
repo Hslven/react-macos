@@ -6,6 +6,7 @@
 export {}
 declare global {
   const createRef: typeof import('react')['createRef']
+  const createUserSlice: typeof import('./stores/index')['createUserSlice']
   const forwardRef: typeof import('react')['forwardRef']
   const lazy: typeof import('react')['lazy']
   const memo: typeof import('react')['memo']
@@ -23,7 +24,7 @@ declare global {
   const useReducer: typeof import('react')['useReducer']
   const useRef: typeof import('react')['useRef']
   const useState: typeof import('react')['useState']
-  const useEffect: typeof import('react')['useEffect']
+  const useStore: typeof import('./stores/index')['useStore']
   const useSyncExternalStore: typeof import('react')['useSyncExternalStore']
   const useTransition: typeof import('react')['useTransition']
 }
