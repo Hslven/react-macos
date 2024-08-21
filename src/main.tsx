@@ -1,11 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
-import 'virtual:uno.css'
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App';
+import 'virtual:uno.css';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+const rootElement = document.getElementById('root')!;
+const root = createRoot(rootElement);
+
+root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

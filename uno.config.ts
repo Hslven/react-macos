@@ -5,6 +5,7 @@ import {
   presetWebFonts,
   transformerDirectives,
   transformerVariantGroup,
+  presetIcons,
 } from 'unocss';
 
 const colorReg = (prefix: string) => new RegExp('^' + prefix + '-([0-9a-z]+)(/(\\d+))?$');
@@ -30,6 +31,7 @@ const colorAttr = (prefix: string, [, color, , opacity]: RegExpMatchArray) => {
 export default defineConfig({
   // +    [/^m-([\.\d]+)$/, ([_, num]) => ({ margin: `${num}px` })],
   rules: [['cc-grid-shadow', { 'box-shadow': '0px 1px 5px 0px rgba(0, 0, 0, 0.3)' }]],
+  // 这里是一些自定义的快捷方式，可以通过这些快捷方式来快速的应用一些样式，左侧是快捷方式，右侧是对应的样式
   shortcuts: [
     ['flex-center', 'flex items-center justify-center'],
     ['hstack', 'flex items-center'],
@@ -67,7 +69,17 @@ export default defineConfig({
     // 允许你通过属性的方式来应用样式，而不是传统的类名。例如，<div p="4" text="center"> 会应用 padding: 1rem 和 text-align: center。
     presetAttributify(),
     // 提供了一种简单的方式来使用图标，可以通过类似 i-carbon:settings 的类名来直接在你的 HTML 中引入图标。
-    // presetIcons(),
+    presetIcons({
+      // 以下是默认将图标设为内联
+      extraProperties: {
+        display: 'inline-block',
+        'vertical-align': 'middle',
+      },
+      // bi: () => import('@iconify-json/bi/icons.json'), // Bootstrap Icons
+      // fa: () => import('@iconify-json/fa/icons.json'), // Font Awesome
+      // mdi: () => import('@iconify-json/mdi/icons.json'), // Material Design Icons
+      // heroicons: () => import('@iconify-json/heroicons/icons.json'), // Heroicons
+    }),
     // 提供了一套预定义的排版样式，可以通过类似 prose 的类名来应用
     // presetTypography(),
     // 允许你定义和使用网络字体。你需要在配置中指定字体的配置，然后可以通过类名来使用这些字体
@@ -92,6 +104,13 @@ export default defineConfig({
      *   text-align: center;
      *   font-weight: 500;
      * }
+     * 也可以用 css 自定义属性来替换 @apply 指令， --at-apply: text-center，可以通过以下方式配置或禁用
+     *  the defaults
+     *  applyVariable: ['--at-apply', '--uno-apply', '--uno'],
+     *  or disable with:
+     *  applyVariable: false
+     *
+     * 文档：https://unocss.dev/transformers/directives#at-apply
      */
     transformerDirectives(),
 

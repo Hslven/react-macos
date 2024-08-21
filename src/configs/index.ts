@@ -15,3 +15,4 @@ export { default as wallpapers } from './wallpapers';
 // import wallpapers from './wallpapers';
 // export { wallpapers };
 export { default as wallpapers } from './wallpapers';
+export { default as user } from './user';

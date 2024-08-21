@@ -1,4 +1,4 @@
-import './App.css';
+import '@/styles/index.css';
 
 import Login from '@/pages/Login';
 
@@ -7,6 +7,7 @@ function App() {
   useEffect(() => {
     setLogin(true);
   }, []);
+
   if (login) {
     return <Login></Login>;
   }
