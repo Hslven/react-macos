@@ -1,6 +1,7 @@
 import { wallpapers, user } from '@/configs';
 // import type { MacActions } from "~/types";
-
+import { Button } from '@libs/components/ui/button';
+import { CoolMode } from '@libs/components/magicui/cool-mode';
 export default function Login(props: unknown) {
   const [password, setPassword] = useState(user.password);
   // const [sign, setSign] = useState("Click to enter");
@@ -36,8 +37,8 @@ export default function Login(props: unknown) {
       // onClick={() => loginHandle()}
     >
       <div className="grid grid-cols-3  divide-gray-300 bg-white">
-        <div>01</div>
-        <div>02</div>
+        <Button>01</Button>
+        <Button>02</Button>
         <div>03</div>
       </div>
 
@@ -57,12 +58,13 @@ export default function Login(props: unknown) {
             value={password}
             onChange={handleInputChange}
           />
-
-          {password && (
-            <div className="col-start-5 col-span-1 flex-center">
-              <span className="i-bi:arrow-right-circle text-white ml-1 font-size-5" />
-            </div>
-          )}
+          <CoolMode>
+            {password && (
+              <div className="col-start-5 col-span-1 flex-center">
+                <span className="i-bi:arrow-right-circle text-white ml-1 font-size-5" />
+              </div>
+            )}
+          </CoolMode>
         </div>
 
         {/* <div mt-2 cursor-pointer text="sm gray-200">

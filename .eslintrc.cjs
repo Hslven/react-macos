@@ -15,4 +15,6 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
+  // 忽略src 下的 libs 文件夹
+
 }
