@@ -4,7 +4,7 @@ import {
   presetUno,
   presetWebFonts,
   transformerDirectives,
-  transformerVariantGroup,
+  transformerAttributifyJsx,
   presetIcons,
 } from 'unocss';
 
@@ -67,7 +67,7 @@ export default defineConfig({
     // 提供了大量的实用工具类，比如 p-4（padding: 1rem）、text-center（text-align: center）等。
     presetUno(),
     // 允许你通过属性的方式来应用样式，而不是传统的类名。例如，<div p="4" text="center"> 会应用 padding: 1rem 和 text-align: center。
-    presetAttributify(),
+    presetAttributify({}),
     // 提供了一种简单的方式来使用图标，可以通过类似 i-carbon:settings 的类名来直接在你的 HTML 中引入图标。
     presetIcons({
       // 以下是默认将图标设为内联
@@ -119,6 +119,7 @@ export default defineConfig({
      * 转变成
      * <div class="hover:bg-gray-400 hover:font-medium font-light font-mono"/>
      */
-    transformerVariantGroup(),
+    // transformerVariantGroup(),
+    transformerAttributifyJsx(),
   ],
 });

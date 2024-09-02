@@ -1,8 +1,6 @@
 import { wallpapers, user } from '@/configs';
-// import type { MacActions } from "~/types";
-import { Button } from '@libs/components/ui/button';
-import { CoolMode } from '@libs/components/magicui/cool-mode';
-export default function Login(props: unknown) {
+import type { MacActions } from '@/types';
+export default function Login(props: MacActions) {
   const [password, setPassword] = useState(user.password);
   // const [sign, setSign] = useState("Click to enter");
   const theme = useStore((state) => state.theme);
@@ -19,7 +17,7 @@ export default function Login(props: unknown) {
     if (user.password === password) {
       console.log('login success');
       // not set password or password correct
-      //     props.setLogin(true);
+      props.setLogin(true);
       //   } else if (password !== "") {
       // password not null and incorrect
       //     setSign("Incorrect password");
@@ -36,12 +34,6 @@ export default function Login(props: unknown) {
       }}
       // onClick={() => loginHandle()}
     >
-      <div className="grid grid-cols-3  divide-gray-300 bg-white">
-        <Button>01</Button>
-        <Button>02</Button>
-        <div>03</div>
-      </div>
-
       <div className="inline-block w-auto relative top-4/5 -mt-40">
         {/* Avatar */}
         <img className="rounded-full size-24 my-0 mx-auto" src={user.avatar} alt="img" />
@@ -50,7 +42,7 @@ export default function Login(props: unknown) {
         {/* Password Input */}
         <div className="mx-auto px-1 grid grid-cols-5 w-44 h-8 mt-4 rounded-2xl backdrop-blur-2xl bg-gray-300/50">
           <input
-            className="placeholder-gray-50 text-sm border-none text-white col-start-1 col-span-4 no-outline bg-transparent px-2"
+            className="placeholder-gray-50 text-sm border-none text-white col-start-1 col-span-4 no-outline bg-transparent px-2 "
             type="password"
             placeholder="Enter Password"
             onClick={(e) => e.stopPropagation()}
@@ -58,13 +50,14 @@ export default function Login(props: unknown) {
             value={password}
             onChange={handleInputChange}
           />
-          <CoolMode>
-            {password && (
-              <div className="col-start-5 col-span-1 flex-center">
-                <span className="i-bi:arrow-right-circle text-white ml-1 font-size-5" />
-              </div>
-            )}
-          </CoolMode>
+          {password && (
+            <div
+              className="col-start-5 col-span-1 flex-center cursor-pointer"
+              onClick={loginHandle}
+            >
+              <span className="i-line-md:arrow-left-circle text-white ml-1 font-size-5 rotate-180" />
+            </div>
+          )}
         </div>
 
         {/* <div mt-2 cursor-pointer text="sm gray-200">
@@ -79,27 +72,21 @@ export default function Login(props: unknown) {
           // onClick={(e) => props.sleepMac(e)}
         >
           <div className="flex-center size-10 bg-gray-700 cursor-pointer rounded-full">
-            <span className="i-gg:sleep text-4xl" />
+            <span className="i-line-md:moon text-3xl" />
           </div>
-          <span>Sleep</span>
+          <span className="font-avenir">Sleep</span>
         </div>
-        <div
-          className="hstack flex-col text-white w-24 "
-          // onClick={(e) => props.restartMac(e)}
-        >
+        <div className="hstack flex-col text-white w-24 " onClick={() => props.restart()}>
           <div className="flex-center size-10 bg-gray-700 cursor-pointer rounded-full">
-            <span className="i-ri:restart-line text-4xl" />
+            <span className="i-ri:restart-line text-3xl" />
           </div>
-          <span>Restart</span>
+          <span className="font-avenir">Restart</span>
         </div>
-        <div
-          className="hstack flex-col text-white w-24 "
-          // onClick={(e) => props.shutMac(e)}
-        >
+        <div className="hstack flex-col text-white w-24 " onClick={() => props.shut()}>
           <div className="flex-center size-10 bg-gray-700 cursor-pointer rounded-full">
-            <span className="i-ri:shut-down-line text-4xl" />
+            <span className="i-ri:shut-down-line text-3xl" />
           </div>
-          <span>Shut Down</span>
+          <span className="font-avenir">Shut Down</span>
         </div>
       </div>
     </div>

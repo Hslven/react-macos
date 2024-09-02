@@ -1,0 +1,3 @@
+.login input::placeholder {
+  @apply text-white/60;
+}
